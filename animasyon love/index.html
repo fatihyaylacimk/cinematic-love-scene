@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cinematic Love Scene ++</title>
+
+<style>
+
+/* BASE */
+
+body{
+margin:0;
+overflow:hidden;
+background:black;
+}
+
+/* CAMERA */
+
+.scene{
+position:absolute;
+width:100%;
+height:100%;
+animation:cinemaZoom 12s ease forwards;
+}
+
+@keyframes cinemaZoom{
+0%{transform:scale(1)}
+100%{transform:scale(1.3)}
+}
+
+/* SHAKE */
+
+.shake{
+animation:shake 0.4s infinite;
+}
+
+@keyframes shake{
+0%{transform:translate(0,0)}
+25%{transform:translate(1px,-1px)}
+50%{transform:translate(-1px,1px)}
+75%{transform:translate(1px,1px)}
+100%{transform:translate(-1px,-1px)}
+}
+
+/* FOCUS BLUR */
+
+.blur{
+filter:blur(1.4px);
+transition:filter 2s;
+}
+
+/* GALAXY */
+
+.galaxy{
+position:absolute;
+width:100%;
+height:100%;
+background:radial-gradient(circle,#3a3e9c,#000 70%);
+}
+
+/* NEBULA */
+
+.nebula{
+position:absolute;
+width:100%;
+height:100%;
+background:radial-gradient(circle at 40% 40%,rgba(120,120,255,0.25),transparent),
+radial-gradient(circle at 70% 60%,rgba(255,80,200,0.2),transparent);
+}
+
+/* MOON */
+
+.moon{
+position:absolute;
+top:80px;
+right:150px;
+width:140px;
+height:140px;
+border-radius:50%;
+background:white;
+box-shadow:0 0 80px white;
+}
+
+/* STARS */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+}
+
+/* METEOR */
+
+.meteor{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+box-shadow:0 0 10px white;
+animation:meteor 2s linear forwards;
+}
+
+@keyframes meteor{
+0%{transform:translate(0,0)}
+100%{transform:translate(-420px,260px);opacity:0}
+}
+
+/* FIREFLY */
+
+.firefly{
+position:absolute;
+width:4px;
+height:4px;
+background:#fff59d;
+border-radius:50%;
+box-shadow:0 0 8px #fff59d;
+animation:fly 3s infinite alternate;
+}
+
+@keyframes fly{
+0%{transform:translateY(0)}
+100%{transform:translateY(-25px)}
+}
+
+/* GROUND */
+
+.ground{
+position:absolute;
+bottom:120px;
+width:100%;
+height:2px;
+background:white;
+}
+
+/* TREES */
+
+.tree{
+position:absolute;
+bottom:120px;
+font-size:40px;
+animation:wind 3s infinite alternate;
+}
+
+@keyframes wind{
+0%{transform:rotate(-2deg)}
+100%{transform:rotate(2deg)}
+}
+
+/* FLOWERS */
+
+.flower{
+position:absolute;
+bottom:120px;
+font-size:12px;
+animation:grow 3s ease forwards,wind 3s infinite alternate;
+}
+
+@keyframes grow{
+0%{transform:scale(0)}
+100%{transform:scale(1.8)}
+}
+
+/* PERSON */
+
+.person{
+position:absolute;
+bottom:120px;
+width:6px;
+height:26px;
+background:white;
+}
+
+/* HEAD */
+
+.person::before{
+content:"";
+position:absolute;
+top:-8px;
+left:-2px;
+width:10px;
+height:10px;
+border-radius:50%;
+background:white;
+}
+
+/* ARMS */
+
+.arm{
+position:absolute;
+width:16px;
+height:2px;
+background:white;
+top:7px;
+transform-origin:left center;
+transition:transform 1s;
+}
+
+/* LEGS */
+
+.leg{
+position:absolute;
+width:2px;
+height:12px;
+background:white;
+bottom:-12px;
+transform-origin:top;
+}
+
+/* WALK */
+
+.walk .leg1{
+animation:walk1 0.5s infinite alternate;
+}
+
+.walk .leg2{
+animation:walk2 0.5s infinite alternate;
+}
+
+@keyframes walk1{
+from{transform:rotate(-25deg)}
+to{transform:rotate(25deg)}
+}
+
+@keyframes walk2{
+from{transform:rotate(25deg)}
+to{transform:rotate(-25deg)}
+}
+
+/* WALK MOVE */
+
+#man{
+left:-60px;
+animation:walkMan 7s linear forwards;
+}
+
+#woman{
+right:-60px;
+animation:walkWoman 7s linear forwards;
+}
+
+@keyframes walkMan{
+0%{left:-60px}
+100%{left:49%}
+}
+
+@keyframes walkWoman{
+0%{right:-60px}
+100%{right:49%}
+}
+
+/* HUG */
+
+.hug #man{
+transform:translateX(6px);
+}
+
+.hug #woman{
+transform:translateX(-6px);
+}
+
+.hug #man .arm{
+transform:rotate(80deg);
+}
+
+.hug #woman .arm{
+transform:rotate(-80deg);
+}
+
+/* HEART */
+
+.heart{
+position:absolute;
+font-size:24px;
+color:#ff3d6d;
+animation:heart 5s linear forwards;
+}
+
+@keyframes heart{
+0%{opacity:1;transform:translateY(0)}
+100%{opacity:0;transform:translateY(-240px)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene blur">
+
+<div class="galaxy"></div>
+<div class="nebula"></div>
+
+<div class="moon"></div>
+
+<div class="ground"></div>
+
+<div class="tree" style="left:10%">🌳</div>
+<div class="tree" style="left:35%">🌳</div>
+<div class="tree" style="left:70%">🌳</div>
+
+<div class="flower" style="left:20%">🌸</div>
+<div class="flower" style="left:45%">🌺</div>
+<div class="flower" style="left:80%">🌸</div>
+
+<!-- MAN -->
+
+<div id="man" class="person walk">
+
+<div class="arm"></div>
+
+<div class="leg leg1"></div>
+<div class="leg leg2"></div>
+
+</div>
+
+<!-- WOMAN -->
+
+<div id="woman" class="person walk">
+
+<div class="arm"></div>
+
+<div class="leg leg1"></div>
+<div class="leg leg2"></div>
+
+</div>
+
+</div>
+
+<script>
+
+/* STARS */
+
+for(let i=0;i<350;i++){
+
+let s=document.createElement("div")
+s.className="star"
+
+s.style.top=Math.random()*100+"%"
+s.style.left=Math.random()*100+"%"
+
+document.body.appendChild(s)
+
+}
+
+/* FIREFLIES */
+
+for(let i=0;i<25;i++){
+
+let f=document.createElement("div")
+f.className="firefly"
+
+f.style.top=(60+Math.random()*30)+"%"
+f.style.left=Math.random()*100+"%"
+
+document.body.appendChild(f)
+
+}
+
+/* METEOR RAIN */
+
+function meteor(){
+
+let m=document.createElement("div")
+
+m.className="meteor"
+
+m.style.top=Math.random()*50+"%"
+m.style.left=Math.random()*100+"%"
+
+document.body.appendChild(m)
+
+setTimeout(()=>m.remove(),2000)
+
+}
+
+setInterval(meteor,2200)
+
+/* HEART */
+
+function heart(){
+
+let h=document.createElement("div")
+
+h.className="heart"
+
+h.innerHTML="❤"
+
+h.style.left="49%"
+h.style.bottom="140px"
+
+document.body.appendChild(h)
+
+setTimeout(()=>h.remove(),5000)
+
+}
+
+setInterval(()=>{
+for(let i=0;i<4;i++) heart()
+},900)
+
+/* HUG EVENT */
+
+setTimeout(()=>{
+
+document.body.classList.add("hug")
+
+document.querySelector(".scene").classList.remove("blur")
+
+document.querySelector(".scene").classList.add("shake")
+
+},7000)
+
+</script>
+
+</body>
+</html>
